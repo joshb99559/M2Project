@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'pmd'
+apply plugin: 'application'
+
+task runp1(dependsOn:build)<< {
+   mainClassName = "edu.gatech.oad.antlab.pkg1.AntLabMain"
+}
+
+sourceCompatibility = 1.8
+version = '1.0'
+mainClassName='edu.gatech.oad.antlab.pkg1.AntLabMain'
+
+dependencies {
+	compile files('lib/resources.jar')
+}
+
+
+
+//Define the contents of the jar file
+jar  {
+  manifest {
+     attributes  'Implementation-Title' : 'Gradle Quickstart' ,
+                 'Main-Class' : 'edu.gatech.oad.antlab.pkg1.AntLabMain',
+                 'Class-Path' : './../../lib/resources.jar'
+    }
+    archiveName = 'AntLabMain.jar'
+}
+
+
+
+//setup a location for repositories of any libraries that need to be downloaded
+repositories {
+   mavenCentral()
+}
